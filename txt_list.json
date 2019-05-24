@@ -1,0 +1,14 @@
+[
+    {
+        "url": "http://www.gutenberg.org/cache/epub/6762/pg6762.txt"
+        , "title": "Politics"
+        , "first_split": "CHAPTER I"
+        , "last_split": "INDEX"
+    }
+    , {
+        "url":"http://www.gutenberg.org/cache/epub/6763/pg6763.txt"
+        , "title":"The Poetics"
+        , "first_split": "ARISTOTLE ON THE ART OF POETRY"
+        , "last_split": "End of the Project Gutenberg EBook of The Poetics"
+    }
+]
