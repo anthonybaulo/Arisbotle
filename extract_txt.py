@@ -5,42 +5,38 @@ import json
 
 corpus = []
 final_file_name = 'arisbotle_data.txt'
-txt_list = 'aris_test.json'
+txt_list = 'txt_list.json'
 
 def open_json_url_list(json_url_list):
+    list_url = []
     with open(json_url_list) as aristotle_texts:
         list_url.append(json.load(aristotle_texts))
     return list_url[0]
 
-list_url = open_json_url_list(txt_list)
+def return_corpus_text(url_data):
+    first_section = return_first_split(url_data)
+    last_section = return_last_split(url_data, first_section)
+    return last_section
 
-for url_data in list_url:
-    # get data from url
-    url_title = url_data['title']
+def return_first_split(url_data):
     test_get = requests.get(url_data['url'])
     url_full_text = json.dumps(test_get.text)
     first_split = url_full_text.split(url_data['first_split'])
-    print(len(first_split))
-
-    # take all data after first split
     first_clean = first_split[1:]
-    first_clean = "".join(first_clean)
-    last_split = first_clean.split(url_data['last_split'])
-    print(len(last_split))
+    return "".join(first_clean)
 
-    # take all data but the last split
+def return_last_split(url_data, first_clean):
+    last_split = first_clean.split(url_data['last_split'])
     final_clean = last_split[:-1]
     final_clean = "".join(final_clean)
     final_clean = final_clean.replace("\\r\\n\\r\\n","") \
             .replace("\\r","") \
             .replace("\\n","") \
             .replace("\\","")
-    final_length = len(final_clean)
+    return final_clean
 
-    # append data to corpus
-    print(f"Length of {url_title}: {final_length}")
-    corpus.append(final_clean)
+list_url = open_json_url_list(txt_list)
+corpus = [return_corpus_text(url_data) for url_data in list_url]
 
 with open(final_file_name, 'w') as outfile:  
     json.dump(corpus, outfile)
-
