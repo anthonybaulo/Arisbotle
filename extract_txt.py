@@ -29,10 +29,10 @@ def return_last_split(url_data, first_clean):
     last_split = first_clean.split(url_data['last_split'])
     final_clean = last_split[:-1]
     final_clean = "".join(final_clean)
-    final_clean = final_clean.replace("\\r\\n\\r\\n","") \
-            .replace("\\r","") \
-            .replace("\\n","") \
-            .replace("\\","")
+    final_clean = final_clean.replace("\\r\\n\\r\\n"," ") \
+            .replace("\\r"," ") \
+            .replace("\\n"," ") \
+            .replace("\\"," ")
     return final_clean
 
 list_url = open_json_url_list(txt_list)
