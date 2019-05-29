@@ -4,7 +4,7 @@ import numpy as np
 import json
 
 corpus = []
-final_file_name = 'arisbotle_data.txt'
+final_file_name = 'data/arisbotle_data.txt'
 txt_list = 'txt_list.json'
 
 def open_json_url_list(json_url_list):
@@ -30,9 +30,9 @@ def return_last_split(url_data, first_clean):
     final_clean = last_split[:-1]
     final_clean = "".join(final_clean)
     final_clean = final_clean.replace("\\r\\n\\r\\n"," ") \
-            .replace("\\r"," ") \
+            .replace("\\r","") \
             .replace("\\n"," ") \
-            .replace("\\"," ")
+            .replace("\\","")
     return final_clean
 
 list_url = open_json_url_list(txt_list)
